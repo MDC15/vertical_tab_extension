@@ -1,18 +1,21 @@
-chrome.action.onClicked.addListener(() => {
-  // Lấy thông tin màn hình để canh cửa sổ sidebar ở bên phải
-  const screenWidth = screen.availWidth;
-  const screenHeight = screen.availHeight;
-  // Tỉ lệ chiếm 20% chiều ngang (bạn có thể thay 0.2 thành 0.15 tùy thích)
-  const sidebarWidth = Math.round(screenWidth * 0.2);
-  const sidebarLeft = screenWidth - sidebarWidth;
+// background.js - Service Worker
 
-  chrome.windows.create({
-    url: "sidebar.html",
-    type: "popup",
-    left: sidebarLeft,
-    top: 0,
-    width: sidebarWidth,
-    height: screenHeight,
-    focused: true
-  });
+// Mở Side Panel khi người dùng nhấp vào icon của extension
+chrome.sidePanel
+  .setPanelBehavior({ openPanelOnActionClick: true })
+  .catch((error) => console.error("Failed to set side panel behavior:", error));
+
+// Lắng nghe cài đặt hoặc gỡ cài đặt
+chrome.runtime.onInstalled.addListener((details) => {
+  console.log(`Vertical Tabs extension ${details.reason}.`);
+  // Đặt giá trị theme mặc định nếu chưa có khi cài đặt lần đầu
+  if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
+    chrome.storage.sync.get(["theme"], (result) => {
+      if (!result.theme) {
+        chrome.storage.sync.set({ theme: "dark" }).then(() => {
+          console.log("Default theme set to dark.");
+        });
+      }
+    });
+  }
 });

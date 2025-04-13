@@ -1,0 +1,399 @@
+/* --- Biến Màu Cơ Bản --- */
+:root {
+  /* Theme Tối (Mặc định) */
+  --bg-color-dark: #1e1e2e;
+  --text-color-dark: #cdd6f4;
+  --accent-color-dark: #89b4fa;
+  --hover-bg-color-dark: rgba(147, 153, 178, 0.1);
+  --border-color-dark: #45475a;
+  --close-icon-color-dark: #a6adc8;
+  --close-icon-hover-color-dark: #f38ba8;
+  --pig-container-bg-dark: #11111b;
+  --scrollbar-thumb-dark: #585b70;
+  --scrollbar-track-dark: #1e1e2e;
+  --active-text-color-dark: #11111b;
+  --input-bg-dark: #313244;
+
+  /* Theme Sáng */
+  --bg-color-light: #eff1f5;
+  --text-color-light: #4c4f69;
+  --accent-color-light: #1e66f5;
+  --hover-bg-color-light: rgba(20, 20, 30, 0.08);
+  --border-color-light: #dce0e8;
+  --close-icon-color-light: #7c7f93;
+  --close-icon-hover-color-light: #d20f39;
+  --pig-container-bg-light: #e6e9ef;
+  --scrollbar-thumb-light: #bcc0cc;
+  --scrollbar-track-light: #eff1f5;
+  --active-text-color-light: #eff1f5;
+  --input-bg-light: #ffffff;
+
+  /* Theme Tùy Chỉnh */
+  --custom-bg-color: #333344;
+  --custom-text-color: #eeeeff;
+  --custom-accent-color: #88aaff;
+}
+
+/* --- Áp dụng Theme --- */
+body {
+  --current-bg-color: var(--bg-color-dark);
+  --current-text-color: var(--text-color-dark);
+  --current-accent-color: var(--accent-color-dark);
+  --current-hover-bg-color: var(--hover-bg-color-dark);
+  --current-border-color: var(--border-color-dark);
+  --current-close-icon-color: var(--close-icon-color-dark);
+  --current-close-icon-hover-color: var(--close-icon-hover-color-dark);
+  --current-pig-container-bg: var(--pig-container-bg-dark);
+  --current-scrollbar-thumb: var(--scrollbar-thumb-dark);
+  --current-scrollbar-track: var(--scrollbar-track-dark);
+  --current-active-text-color: var(--active-text-color-dark);
+  --current-input-bg: var(--input-bg-dark);
+}
+
+body.light-theme {
+  --current-bg-color: var(--bg-color-light);
+  --current-text-color: var(--text-color-light);
+  --current-accent-color: var(--accent-color-light);
+  --current-hover-bg-color: var(--hover-bg-color-light);
+  --current-border-color: var(--border-color-light);
+  --current-close-icon-color: var(--close-icon-color-light);
+  --current-close-icon-hover-color: var(--close-icon-hover-color-light);
+  --current-pig-container-bg: var(--pig-container-bg-light);
+  --current-scrollbar-thumb: var(--scrollbar-thumb-light);
+  --current-scrollbar-track: var(--scrollbar-track-light);
+  --current-active-text-color: var(--active-text-color-light);
+  --current-input-bg: var(--input-bg-light);
+}
+
+body.custom-theme {
+  --current-bg-color: var(--custom-bg-color);
+  --current-text-color: var(--custom-text-color);
+  --current-accent-color: var(--custom-accent-color);
+  --current-hover-bg-color: rgba(255, 255, 255, 0.08);
+  --current-border-color: rgba(255, 255, 255, 0.15);
+  --current-close-icon-color: var(--custom-text-color);
+  --current-close-icon-hover-color: #f38ba8;
+  --current-pig-container-bg: color-mix(
+    in srgb,
+    var(--custom-bg-color) 85%,
+    black 15%
+  );
+  --current-scrollbar-thumb: color-mix(
+    in srgb,
+    var(--custom-bg-color) 50%,
+    var(--custom-text-color) 50%
+  );
+  --current-scrollbar-track: var(--custom-bg-color);
+  --current-active-text-color: var(--custom-bg-color);
+  --current-input-bg: color-mix(in srgb, var(--custom-bg-color) 70%, white 30%);
+}
+
+/* --- Layout và Style Chung --- */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  font-size: 13.5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--current-bg-color);
+  color: var(--current-text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--current-border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: inherit;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: inherit;
+}
+
+/* --- UI Chọn Theme --- */
+.settings {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings label {
+  font-size: 12px;
+  color: inherit;
+  opacity: 0.8;
+}
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.settings select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: var(--current-input-bg);
+  border: 1px solid var(--current-border-color);
+  padding: 4px 28px 4px 10px;
+  border-radius: 5px;
+  color: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  outline: none;
+}
+.settings select:hover {
+  border-color: var(--current-accent-color);
+}
+
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 0;
+  height: 0;
+  margin-top: -3px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--current-text-color);
+  opacity: 0.7;
+  pointer-events: none;
+  transition: border-color 0.3s ease, opacity 0.3s ease;
+}
+.select-wrapper:hover::after {
+  opacity: 1;
+}
+
+.custom-colors-panel {
+  display: none;
+  margin-left: 0;
+  padding: 4px 6px;
+  background-color: var(--current-input-bg);
+  border-radius: 5px;
+  border: 1px solid var(--current-border-color);
+  vertical-align: middle;
+}
+body.custom-theme .custom-colors-panel {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.custom-colors-panel label {
+  margin: 0;
+}
+
+.settings input[type="color"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--current-border-color);
+  border-radius: 4px;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: transparent;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+.settings input[type="color"]:hover {
+  border-color: var(--current-accent-color);
+}
+.settings input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.settings input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 3px;
+}
+.settings input[type="color"]::-moz-color-swatch {
+  border: none;
+  border-radius: 3px;
+}
+
+/* --- Danh sách Tab --- */
+#tab-list-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--current-bg-color);
+}
+#tab-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+#tab-list-container::-webkit-scrollbar-track {
+  background: var(--current-scrollbar-track);
+}
+#tab-list-container::-webkit-scrollbar-thumb {
+  background-color: var(--current-scrollbar-thumb);
+  border-radius: 4px;
+  border: 2px solid var(--current-scrollbar-track);
+}
+#tab-list-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--current-accent-color);
+}
+
+#tab-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tab-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px 8px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--current-border-color);
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  color: var(--current-text-color);
+}
+.tab-item:last-child {
+  border-bottom: none;
+}
+
+.tab-item:hover {
+  background-color: var(--current-hover-bg-color);
+}
+
+.tab-item.active {
+  background-color: var(--current-accent-color);
+  color: var(--current-active-text-color);
+  font-weight: 500;
+}
+
+.tab-item.active .close-tab-btn svg path {
+  fill: var(--current-active-text-color);
+}
+
+.tab-item.active .close-tab-btn:hover svg path {
+  fill: var(--current-close-icon-hover-color);
+}
+
+.tab-favicon {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.tab-title {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 5px;
+}
+
+.close-tab-btn {
+  background: none;
+  border: none;
+  padding: 3px;
+  margin-left: auto;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background-color 0.15s ease;
+  line-height: 0;
+  flex-shrink: 0;
+  border-radius: 3px;
+}
+.close-tab-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 1 !important;
+}
+.close-tab-btn svg {
+  width: 11px;
+  height: 11px;
+  display: block;
+}
+.close-tab-btn svg path {
+  fill: var(--current-close-icon-color);
+  transition: fill 0.2s ease;
+}
+.close-tab-btn:hover svg path {
+  fill: var(--current-close-icon-hover-color);
+}
+.tab-item:hover .close-tab-btn,
+.tab-item.active .close-tab-btn {
+  opacity: 0.7;
+}
+
+.loading-placeholder {
+  padding: 20px 15px;
+  text-align: center;
+  color: var(--current-text-color);
+  opacity: 0.6;
+  font-style: italic;
+}
+
+/* --- Khu vực Heo Hồng --- */
+#pig-animation-container {
+  height: 40px;
+  background-color: var(--current-pig-container-bg);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--current-border-color);
+  flex-shrink: 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#walking-pig {
+  position: absolute;
+  bottom: 2px;
+  left: -40px;
+  height: 30px;
+  width: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+  animation: walkAcross 30s linear infinite, pigBob 0.6s ease-in-out infinite;
+}
+
+@keyframes walkAcross {
+  0% {
+    transform: translateX(0px) scaleX(1);
+  }
+  48% {
+    transform: translateX(calc(200% + 40px)) scaleX(1);
+  }
+  51% {
+    transform: translateX(calc(200% + 40px)) scaleX(1);
+  }
+  52% {
+    transform: translateX(calc(200% + 40px)) scaleX(-1);
+  }
+  98% {
+    transform: translateX(0px) scaleX(-1);
+  }
+  99% {
+    transform: translateX(0px) scaleX(-1);
+  }
+  100% {
+    transform: translateX(0px) scaleX(1);
+  }
+}
+@keyframes pigBob {
+  0%,
+  100% {
+    bottom: 2px;
+  }
+  50% {
+    bottom: 5px;
+  }
+}

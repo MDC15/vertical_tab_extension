@@ -1,41 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
   <head>
-    <meta charset="utf-8" />
-    <title>Vertical Tabs & Pig</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vertical Tabs</title>
+    <link rel="stylesheet" href="sidebar.css" />
   </head>
-  <body>
-    <div class="main-container">
-      <header class="header">
-        <div class="title">Vertical Tabs</div>
-        <!-- Khu tùy chỉnh theme -->
-        <div class="theme-settings">
-          <label>Theme:</label>
-          <select id="themeSelect">
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-            <option value="pink">Pink</option>
-            <option value="custom">Custom Color</option>
+  <body class="dark-theme">
+    <!-- Bắt đầu với class theme mặc định -->
+    <header class="sidebar-header">
+      <h2>Vertical Tabs</h2>
+      <div class="settings">
+        <label for="theme-select">Theme:</label>
+        <!-- Wrapper cho select -->
+        <div class="select-wrapper">
+          <select id="theme-select">
+            <option value="dark">Tối</option>
+            <option value="light">Sáng</option>
+            <option value="custom">Tùy chỉnh</option>
           </select>
-          <input type="color" id="customColorPicker" style="display: none" />
         </div>
-      </header>
-
-      <!-- Khu thay background: cho phép chọn ảnh/nền -->
-      <div class="bg-settings">
-        <label>Chọn background:</label>
-        <input type="file" id="bgUpload" accept="image/*" />
+        <div id="custom-colors" class="custom-colors-panel">
+          <label for="bg-color-picker" title="Màu nền">Nền:</label>
+          <input type="color" id="bg-color-picker" value="#333344" />
+          <!-- Giá trị mặc định -->
+          <label for="text-color-picker" title="Màu chữ">Chữ:</label>
+          <input type="color" id="text-color-picker" value="#eeeeff" />
+          <!-- Giá trị mặc định -->
+          <label for="accent-color-picker" title="Màu nhấn (active tab)"
+            >Nhấn:</label
+          >
+          <input type="color" id="accent-color-picker" value="#88aaff" />
+          <!-- Giá trị mặc định -->
+        </div>
       </div>
+    </header>
 
-      <section class="tabs-container" id="tabsContainer">
-        <!-- Danh sách tab sẽ được load từ sidebar.js -->
-      </section>
+    <div id="tab-list-container">
+      <ul id="tab-list">
+        <!-- Placeholder, sẽ bị ghi đè bởi JS -->
+        <li class="loading-placeholder">Đang tải danh sách tab...</li>
+      </ul>
+    </div>
 
-      <!-- Chú heo hồng chạy ngang -->
-      <div class="pig-container">
-        <img id="pig" src="pig.png" alt="Pig" />
-      </div>
+    <div id="pig-animation-container">
+      <img id="walking-pig" src="assets/pig.svg" alt="Walking Pig" />
     </div>
 
     <script src="sidebar.js"></script>
