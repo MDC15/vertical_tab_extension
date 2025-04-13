@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Vertical Tabs with Pink Pig",
+  "version": "1.0",
+  "description": "Extension vertical tabs với UI hiện đại, tùy chỉnh theme, có chú heo hồng chạy ngang.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "sidebar.html"
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "permissions": [
+    "tabs",
+    "storage",
+    "windows"
+  ],
+  "icons": {
+    "16": "default_icon.png",
+    "48": "default_icon.png",
+    "128": "default_icon.png"
+  }
+}

@@ -1,0 +1,140 @@
+/* RESET CƠ BẢN */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CHUNG */
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: var(--bg-color, #ffffff);
+  color: var(--text-color, #333);
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ẩn scrollbar của trang, cho sidebar "đứng yên" */
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative; /* để pig chạy ở dưới */
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.theme-settings {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.bg-settings {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background-color: rgba(0,0,0,0.05);
+}
+
+.tabs-container {
+  flex: 1;
+  overflow-y: auto; 
+}
+
+/* Mỗi tab */
+.tab {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.tab:hover {
+  background-color: rgba(0,0,0,0.08);
+}
+
+.tab img {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+.tab-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Animation chú heo hồng */
+.pig-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* chiều cao đủ cho chú heo */
+  overflow: hidden;
+  background-color: transparent;
+}
+
+#pig {
+  position: absolute;
+  bottom: 0;
+  left: -100px; /* bắt đầu ngoài màn hình */
+  width: 70px;
+  height: auto;
+  animation: pig-move 8s linear infinite;
+}
+
+/* Keyframes để heo chạy qua chạy lại */
+@keyframes pig-move {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(calc(100vw - 50px)); /* heo chạy sang phải */
+  }
+  50% {
+    transform: translateX(calc(100vw - 50px));
+  }
+  75% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* THEME DEMO SẴN: LIGHT, DARK, PINK */
+/* Ta có thể sử dụng :root:... Ở đây demo dynamic style qua JS, 
+   nên ta chỉ làm sẵn class. */
+
+body.light {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+}
+
+body.dark {
+  --bg-color: #1e1e1e;
+  --text-color: #f0f0f0;
+}
+
+body.pink {
+  --bg-color: #ffe4ec; /* hồng nhạt */
+  --text-color: #bd2377; /* hồng đậm */
+}
